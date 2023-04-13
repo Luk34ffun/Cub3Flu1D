@@ -1,0 +1,15 @@
+FC=gfortran
+FFLAGS= -O3 -Wall -Wextra -fcheck=all -ffpe-trap=invalid,zero,overflow
+
+SRC=postproc.F90
+
+OBJ=${SRC:.F90=.o}
+
+%.o: %.F90
+
+			$(FC) $(FFLAGS) -o $@ -c $<
+postproc.exe: $(OBJ)
+			$(FC) $(FFLAGS) -o $@  $(OBJ) 
+
+clean:
+			@rm -f *.o *.mod #fluid
